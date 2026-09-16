@@ -1,0 +1,66 @@
+# ===================================================================
+# TutorNest — Spring Boot Production Profile (application-prod.yml)
+# Active Profile: prod
+# Production Frontend: https://tutornest.in
+# Production REST API: https://api.tutornest.in
+# ===================================================================
+
+server:
+  port: 8443
+  # Handles TLS offloading from Cloudflare / AWS ALB / Nginx reverse proxy
+  forward-headers-strategy: framework
+  tomcat:
+    remoteip:
+      remote-ip-header: x-forwarded-for
+      protocol-header: x-forwarded-proto
+  servlet:
+    session:
+      cookie:
+        secure: true
+        http-only: true
+        same-site: none  # Required for cross-subdomain access (tutornest.in -> api.tutornest.in)
+
+tutornest:
+  domain:
+    frontend-url: https://tutornest.in
+    api-url: https://api.tutornest.in
+  cors:
+    allowed-origins: https://tutornest.in,https://www.tutornest.in
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  # Database configuration via environment variables (Zero secrets hardcoded)
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres.tutornest.internal:5432/tutornest_prod?sslmode=require}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      connection-timeout: 20000
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+# Production security & JWT configuration
+security:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-ms: 86400000 # 24 hours
+    refresh-expiration-ms: 604800000 # 7 days
+
+logging:
+  level:
+    root: INFO
+    in.tutornest: INFO
+    org.springframework.security: WARN

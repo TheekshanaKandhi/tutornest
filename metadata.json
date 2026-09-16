@@ -1,0 +1,6 @@
+{
+  "name": "TutorNest",
+  "description": "TutorNest connects students with verified expert tutors for 1-on-1 personalized learning in Mathematics, Sciences, Coding, Languages, and test prep.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

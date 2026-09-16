@@ -1,0 +1,41 @@
+# ===================================================================
+# TutorNest — Spring Boot Development Profile (application-dev.yml)
+# Active Profile: dev
+# Local Development: http://localhost:3000
+# ===================================================================
+
+server:
+  port: 8080
+
+tutornest:
+  domain:
+    frontend-url: http://localhost:3000
+    api-url: http://localhost:8080
+  cors:
+    allowed-origins: http://localhost:3000,http://127.0.0.1:3000
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    url: jdbc:h2:mem:tutornest_dev;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+security:
+  jwt:
+    secret: dev_secret_key_only_for_local_testing_do_not_use_in_production
+    expiration-ms: 86400000
+
+logging:
+  level:
+    root: INFO
+    in.tutornest: DEBUG

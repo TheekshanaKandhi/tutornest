@@ -1,0 +1,9 @@
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="36" height="36" rx="8" fill="#0F172A"/>
+  <!-- Foundational Mentorship Cradle (The Nest) -->
+  <path d="M 7.5 18 C 7.5 25.5 12 29.5 18 29.5 C 24 29.5 28.5 25.5 28.5 18" stroke="#2563EB" stroke-width="3.8" stroke-linecap="round"/>
+  <!-- Ascending Learning Trajectory -->
+  <path d="M 13 20.5 C 14 14.5 17.5 10 23 8.5" stroke="#3B82F6" stroke-width="3.8" stroke-linecap="round"/>
+  <!-- Breakthrough Node (Signature Teal Accent) -->
+  <circle cx="25.5" cy="8.5" r="3" fill="#14B8A6"/>
+</svg>
